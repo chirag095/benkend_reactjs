@@ -1,0 +1,48 @@
+<style type="text/css">
+          <link rel="stylesheet" type="text/css" href="./style.css" />
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <div class="col-lg-3"><h2>Locality</h2></div>
+    <div class="col-lg-9">
+      <!-- <a href="<%#=admin_cities_new_item_path(params[:id])%>" class="btn btn-danger btn-lg pull-right" style="margin-top: 2%;"><i class="fa fa-plus"></i> Add Menu Item </a> -->
+    </div>  
+  </div> 
+</div>
+<div class="row"> 
+  <div class="col-lg-10"style="padding-left:200px;">
+    <div class="ibox">
+      <div class="col-lg-12">
+        <br>
+        <%=form_for :user,url: admin_localities_create_path,:html=>{:id=>"new_form",:class=>"form",:multipart =>true} do |l|%>
+          <div class="panel panel-info">
+            <div class="panel-heading">User Details</div>
+            <div class="panel-body">
+              <input type="hidden" name="localities_id" value="<%#=@city.id%>">
+                                    
+             
+             <div class="form-group row">
+                <label class="col-sm-3 col-form-label">New Locality</label>
+                <div class="col-sm-7">
+                   <input type="text" name = "title" placeholder="Localities" class="form-control" autocomplete = "off">
+                </div>
+             </div>
+             
+            
+        
+            <div class="form-group">
+                <button class="btn btn-md btn-primary pull-right" type="submit"style="margin-top: -29px;" id="submit"><strong>Submit</strong></button>     
+              </div>           
+            </div>
+          </div>
+        <%end%> 
+      </div>
+    </div>
+  </div>
+</div>    
+
+
+
+
+
+

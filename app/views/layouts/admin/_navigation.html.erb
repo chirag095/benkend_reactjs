@@ -1,0 +1,74 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <img alt="image" class="rounded-circle" src="<%= image_path('/assets/logo.png') %>"style= "height:100px !important; width:100px;"> </a>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="block m-t-xs font-bold">Am Here Admin</span>
+                        <span class="text-muted text-xs block">Super Admin</b></span>
+                    </a>                             
+                    <!-- <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a class="dropdown-item" href="<%#= url_for :controller => 'appviews', :action => 'profile' %>">Profile</a></li>
+                        <li><a class="dropdown-item" href="<%#= url_for :controller => 'appviews', :action => 'contacts' %>">Contacts</a></li>
+                        <li><a class="dropdown-item" href="<%#= url_for :controller => 'mailbox', :action => 'inbox' %>">Mailbox</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="<%#= url_for :controller => 'pages', :action => 'login' %>">Logout</a></li>
+                    </ul> -->
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+         
+            <li class="<%= is_active_controller('city')%>">
+                <%=link_to admin_city_index_path do%>
+            <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+            City</apan>
+            <%end%>
+        </li>
+          
+           <li class="<%= is_active_controller('amenities')%>">
+                <%=link_to admin_amenities_index_path do%>
+            <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+            Amenities</apan>
+            <%end%>
+        </li> 
+
+        <li class="<%= is_active_controller('states')%>">
+                <%=link_to admin_states_index_path do%>
+            <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+            States</apan>
+            <%end%>
+        </li>   
+            
+             <li class="<%= is_active_controller('localities')%>">
+                <%=link_to admin_localities_index_path do%>
+            <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+            Localities Name</apan>
+            <%end%>
+        </li>   
+        <li class="<%= is_active_controller('builders')%>">
+                <%=link_to admin_builders_index_path do%>
+            <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+            Builders Name</apan>
+            <%end%>
+        </li>   
+        <li class="<%= is_active_controller('projects')%>">
+                <%=link_to admin_projects_index_path do%>
+            <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+            Projects Name</apan>
+            <%end%>
+        </li>  
+
+        <li class="<%= is_active_controller('projects')%>">
+                <%=link_to admin_seo_tools_index_path do%>
+            <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+            Seo Tools</apan>
+            <%end%>
+        </li>    
+
+        </ul> 
+
+    </div>
+</nav>

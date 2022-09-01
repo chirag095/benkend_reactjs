@@ -1,0 +1,37 @@
+<div class="panel panel-info">
+  <div class="panel-heading">User Details</div>
+    <div class="panel-body">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Name</label>
+          <div class="col-sm-7">
+            <input type="text" name = "title" placeholder="city" class="form-control" value = "<%=@city.title%>"autocomplete = "off">
+          </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Image</label>
+          <div class="col-sm-6">
+            <img src="<%=@city.image%>" class="img-tag img1" style="width:200px;height:200px;"> 
+              <input type="file" 
+                     name="image" id="img1" onchange='readURL(event)'>
+          </div>
+      </div>
+       <div class="form-group">
+           <button class="btn btn-md btn-primary float-right m-t-n-xs pull-right" type="submit" style= "margin-top: -23px;"id="submit"><strong>Submit</strong></button>     
+      </div>           
+    </div>
+</div>
+        
+  <script type="text/javascript">
+    function readURL(event) {
+    var componentId = event.target.id
+    var getImagePath = URL.createObjectURL(event.target.files[0]);
+    $('.upload-image').css('background-image', 'url(' + getImagePath + ')');
+    $('.' + componentId).attr("src", getImagePath);
+    file = event.target.files[0]
+  }
+
+  </script> 
+
+
+
+
