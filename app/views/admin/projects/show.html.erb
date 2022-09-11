@@ -4,7 +4,17 @@
               <input type="hidden" name="user_id" value="<%#=@user.id%>">
                                     
              
+            <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Project Image</label>
+          <div class="col-sm-6">
+            <img src="<%=url_for(@projects.image)%>" class="img-tag img1" style="width:200px;height:200px;"> 
+              <input type="file" 
+                     name="image" id="img1" onchange='readURL(event)'>
+          </div>
+      </div>
             
+
+
              <div class="form-group row">
                      <label class="col-sm-3 col-form-label">Project Name</label>
                      <div class="col-sm-7">
@@ -120,6 +130,14 @@
                      <label class="col-sm-3 col-form-label">Site Plan</label>
                      <div class="col-sm-7">
                         <input type="text" name = "site_Plan_content" placeholder="Site Plan" class="form-control" value="<%=@projects.site_Plan_content%>"autocomplete = "off">
+                        <!-- <textarea name="title" class="form-control"></textarea> -->
+                     </div>
+                  </div>
+
+                  <div class="form-group row">
+                     <label class="col-sm-3 col-form-label">Highlights</label>
+                     <div class="col-sm-7">
+                        <input type="text" name = "title" placeholder="Highlights" class="form-control" value="<%=@highlights.title%>"autocomplete = "off">
                         <!-- <textarea name="title" class="form-control"></textarea> -->
                      </div>
                   </div>

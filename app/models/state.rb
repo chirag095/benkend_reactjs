@@ -1,3 +1,3 @@
 class State < ApplicationRecord
-	has_many :projects, dependent: :destroy 
+	has_many :projects, dependent: :nullify
 end

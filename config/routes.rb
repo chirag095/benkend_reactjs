@@ -53,6 +53,13 @@ Rails.application.routes.draw do
   get "/projects/edit/:id" => "projects#edit",as:"projects_edit" 
   get "/projects/delete/:id" => "projects#delete",as:"projects_delete"
   post "/projects/update/:id" => "projects#update",as:"projects_update"
+  get"/projects/flatstype/:project_id" => "projects#flatstypes",as:"projects_flatstype"
+  get "/projects/flatsnew/:project_id" => "projects#flatsnew",as:"projects_flatsnew"
+  post "/projects/flatscreate" =>"projects#flatscreate",as:"project_flatscreate"
+  get "/projects/flatsedit/:project_id/:flat_id"=>"projects#flatsedit",as:"project_flatsedit"
+  post"/projects/flatsupdate"=>"projects#flatsupdate",as:"project_flatsupdate"
+  get "/projects/flatsdelete"=>"projects#flatsdelete",as:"project_flatsdelete"
+
   get "update/status/:id" => "projects#update_status",as:"update_status"
   get "/seo_tools/index" => "seo_tools#index", as: "seo_tools_index"
    get "/seo_tools/new" => "seo_tools#new", as: "seo_tools_new"
@@ -61,11 +68,21 @@ Rails.application.routes.draw do
      get "/seo_tools/delete/:id" => "seo_tools#delete",as:"seo_tools_delete"
      post "/seo_tools/update/:id" => "seo_tools#update",as:"seo_tools_update"
 
+
+
+     get "/highlights/index" => "highlights#index",as:"highlights_index"
+     get "/highlights/new" => "highlights#new",as:"highlights_new"
+     post "/highlights/create" => "highlights#create",as:"highlights_create"
+     post "/highlights/update" => "highlights#update",as:"highlights_update"
+     get "/highlights/edit/:id" =>"highlights#edit",as:"highlights_edit"
+     get"/highlights/delete/:id" =>"highlights#delete",as:"highlights_delete"
+
    # resources :projects 
   get "/landing" => "landing#index"
   end
    namespace :api, defaults: {format: 'json'}do
        namespace :v1 do
+       post "/projects" => "progects#details_project"
        get "/projects" => "progects#project_list"
        post "create/project" => "progects#create_project"
        post "update/project" => "progects#update_project"
@@ -92,6 +109,12 @@ Rails.application.routes.draw do
        get "/cities" => "cities#cities_list"
        post "create/cities"=> "cities#cities_create"
        post  "update/cities"=> "cities#cities_update"
+
+
+       get "/highlights" => "highlights#highlights_list"
+       post "create/highlights" => "highlights#highlights_create"
+       post "update/highlights" => "highlights#highlights_update"
+       get "delete/highlights"=> "highlights#highlights_delete"
 
 
        end

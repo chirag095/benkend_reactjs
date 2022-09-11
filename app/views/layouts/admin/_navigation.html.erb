@@ -66,7 +66,14 @@
             <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
             Seo Tools</apan>
             <%end%>
-        </li>    
+        </li>  
+
+          <li class="<%= is_active_controller('highlights')%>">
+                <%=link_to admin_highlights_index_path do%>
+            <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+            Highlights</apan>
+            <%end%>
+        </li>   
 
         </ul> 
 

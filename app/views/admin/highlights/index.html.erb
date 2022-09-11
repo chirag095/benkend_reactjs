@@ -1,13 +1,12 @@
-
 <div class="wrapper wrapper-content animated fadeInRight">
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>Localities</h5>
+                <h5>Highlights</h5>
                 
                   <!-- <div class="col-lg-9"> -->
-                      <a href="<%=admin_localities_new_path%>" class="btn btn-danger pull-right" style="margin-top: -7px; margin-right: 73px;"><i class="fa fa-plus"></i> Add Localities </a>
+                      <a href="<%=admin_highlights_new_path%>" class="btn btn-danger pull-right" style="margin-top: -7px; margin-right: 73px;"><i class="fa fa-plus"></i> Add Highlights </a>
                     <!-- </div>  -->
                 <div class="ibox-tools">
                     <a class="collapse-link">
@@ -36,25 +35,36 @@
                     <tr>
                        <th>Id</th>
                         <th>Title</th>
-                        <th>City</th>
-                        
+                        <th>Title1</th>
+                        <th>Title2</th>
+                        <th>Title3</th>
+                        <th>Title4</th>
+                        <th>Title5</th>
+                        <th>Title6</th>
+                        <th>Title7</th>
                         <th>Action</th>
                         
                       
                     </tr>
                     </thead>
-                    <% @localities.each do |l|%>
+                    <% @highlights.each do |h|%>
                     <tbody>
                     <tr>
-                        <td><%=l.id%></td>
-                        <td><%=l.title%></td>
-                        <td><%=l&.city_l&.title%></td>
+                        <td><%=h.id%></td>
+                        <td><%=h.title%></td>
+                        <td><%=h.title1%></td>
+                        <td><%=h.title2%></td>
+                        <td><%=h.title3%></td>
+                        <td><%=h.title4%></td>
+                        <td><%=h.title5%></td>
+                        <td><%=h.title6%></td>
+                        <td><%=h.title7%></td>
                       
 
                         <td>
-                            <a href="<%=admin_localities_edit_path(id:l.id)%>"class="btn btn-success btn-md"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a href="<%=admin_highlights_edit_path(id:h.id)%>"class="btn btn-success btn-md"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                          
-                            <a class="btn btn-danger btn-md remove" rel="<%=l.id%>"><i class="fa fa-trash"></i></a>  
+                            <a class="btn btn-danger btn-md remove" rel="<%=h.id%>"><i class="fa fa-trash"></i></a>  
                         </td>
                     </tr>
                   
@@ -74,7 +84,7 @@
     console.log(id)
     swal({
         title: "Are you sure?",
-        text: "You will not be able to recover this Localities",
+        text: "You will not be able to recover this Bilders",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -85,7 +95,7 @@
     },
     function(remove) {
         if (remove) {
-          window.location = "/admin/localities/delete/"+id
+          window.location = "/admin/highlights/delete/"+id
           swal("Deleted!", "Your Category has been deleted.", "success");
         } else {
           swal("Cancelled", "Your Category is safe", "error");

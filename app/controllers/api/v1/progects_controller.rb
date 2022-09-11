@@ -1,9 +1,27 @@
 class Api::V1::ProgectsController < Api::V1::ApplicationsController
     # skip_forgery_protection
+    include ActiveStorage::SetCurrent
 	def project_list
 		@projects = Project.all
 		render json:{code:200,message:"project list",projects:@projects}
     end
+
+    def details_project
+
+        @project = Project.find_by_title(params[:title])
+        
+        if @project.present?
+           amenity = @project.amenity.title
+           t = @project.highlight.title
+           t1 = @project.highlight.title1
+           
+           data = @project.as_json(only:[:id,:title,:project_type,:assets_type,:site_Plan_content,:project_overview,:location_map_content,:possession_date,:site_Plan_content,:project_features,:launch_date],include: [image: {methods: :service_url}]).merge(amenity:amenity,t:t,title1:t1)
+           render json:{code:200,message:"success",project:data }
+        else  
+           render json:{code:402,message:"please provide valid project Id?"}
+        end  
+      end
+   
 
     def create_project
        @project = Project.create!(title:params[:title], project_type:params[:project_type] ,
@@ -50,11 +68,20 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
        @projects.destroy
         render json:{code:204,message:"delete"}
     end
-    def cities_show                                                    
+
+    def cities_show 
+    data = []   
+    local = ''                                                
         @city = CityL.find_by_id(params[:city_id])  
         if @city.present?
             @projects = Project.where("city_l_id =?",@city.id)  
-            render json:{code:200,message:"success",project:@projects}
+            @projects.each do |pro|
+                local = pro.locality.title
+                amenities = pro.amenity.title
+
+                data << pro.as_json(only:[:id,:title,:project_overview],include: [image: {methods: :service_url}]).merge(locality:local,amenity:amenities)
+             end   
+            render json:{code:200,message:"success",project:data }
         else
             render json:{code:402,message:"please provide valid city Id?"}
         end    

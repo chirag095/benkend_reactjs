@@ -6,22 +6,25 @@ def index
   end
  
  def new
+  @cities = CityL.all
     render :layout => "admin/application"
   end
  
  def create
-  @localities = Locality.create(title:params[:title])
+ 
+  @localities = Locality.create(title:params[:title],city_l_id:params[:city_l_id])
     redirect_to admin_localities_index_path
   end
 
   def edit
+     @cities = CityL.all
     @localities = Locality.find_by_id(params[:id])
     render :layout => "admin/application"
   end
 
   def update
       @localities = Locality.find_by_id(params[:id])
-      @localities.update!(title:params[:title])
+      @localities.update!(title:params[:title],city_l_id:params[:city_l_id])
       redirect_to admin_localities_index_path
   end
 

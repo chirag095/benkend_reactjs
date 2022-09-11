@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_25_174413) do
+ActiveRecord::Schema.define(version: 2022_09_11_190754) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(version: 2022_08_25_174413) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "flats", force: :cascade do |t|
+    t.string "title"
+    t.string "carpet_area"
+    t.string "price"
+    t.integer "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_flats_on_project_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -87,10 +97,25 @@ ActiveRecord::Schema.define(version: 2022_08_25_174413) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "highlights", force: :cascade do |t|
+    t.text "title"
+    t.text "title1"
+    t.text "title2"
+    t.text "title3"
+    t.text "title4"
+    t.text "title5"
+    t.text "title6"
+    t.text "title7"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "localities", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "city_l_id"
+    t.index ["city_l_id"], name: "index_localities_on_city_l_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -106,7 +131,7 @@ ActiveRecord::Schema.define(version: 2022_08_25_174413) do
     t.string "site_Plan_content"
     t.integer "amenity_id", null: false
     t.integer "builder_id", null: false
-    t.integer "locality_id", null: false
+    t.integer "locality_id"
     t.integer "state_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -114,6 +139,7 @@ ActiveRecord::Schema.define(version: 2022_08_25_174413) do
     t.boolean "status", default: false
     t.integer "seo_id"
     t.integer "city_l_id"
+    t.integer "highlight_id"
     t.index ["amenity_id"], name: "index_projects_on_amenity_id"
     t.index ["builder_id"], name: "index_projects_on_builder_id"
     t.index ["city_l_id"], name: "index_projects_on_city_l_id"
@@ -170,6 +196,8 @@ ActiveRecord::Schema.define(version: 2022_08_25_174413) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "flats", "projects"
+  add_foreign_key "localities", "city_ls"
   add_foreign_key "projects", "amenities"
   add_foreign_key "projects", "builders"
   add_foreign_key "projects", "city_ls"
