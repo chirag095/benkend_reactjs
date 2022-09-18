@@ -3,8 +3,8 @@ class Admin::ProjectsController < ApplicationController
 
 
   def index
-   @projects = Project.all
-      render :layout => "admin/application"
+    @projects = Project.all
+    render :layout => "admin/application"
   end
 
   def new
@@ -20,10 +20,9 @@ class Admin::ProjectsController < ApplicationController
     render :layout => "admin/application"
   end
 
-   def show
-
+  def show
     @cities = CityL.all
-     @builders = Builder.all
+    @builders = Builder.all
     @localities = Locality.all
     @amenities = Amenity.all
     @states = State.all
@@ -31,11 +30,9 @@ class Admin::ProjectsController < ApplicationController
     @highlights=Highlight.all
     @projects = Project.friendly.find(params[:id])
      render :layout => "admin/application"
-   end
+  end
 
  def create
-  p params[:seo_id]
-  # p params [:highlights_id]
   @projects = Project.create!(title:params[:title], project_type:params[:project_type] ,image:params[:image],
                            assets_type:params[:assets_type] ,
                            project_status:params[:project_status],
@@ -85,73 +82,58 @@ class Admin::ProjectsController < ApplicationController
       redirect_to admin_projects_index_path
   end
 
-  # def update
-  #   @projects = Project.find_by_id(params[:id])
-  #     @projects.update!(title:params[:title])
-  #     redirect_to admin_projects_index_path
-  # end
-
   def delete
-      @projects = Project.find_by_id(params[:id])
-        p @projects
-       @projects.destroy
-        redirect_to admin_projects_index_path
-    end  
-def update_status
-    @project = Project.find_by_id(params[:id])
-    p @project
-    @project.update!(status:!@project.status)
+    @projects = Project.find_by_id(params[:id])
+    @projects.destroy
     redirect_to admin_projects_index_path
-end      
+  end  
+  def update_status
+      @project = Project.find_by_id(params[:id])
+      p @project
+      @project.update!(status:!@project.status)
+      redirect_to admin_projects_index_path
+  end      
 
-def flatstypes
-  @project= Project.find_by_id(params[:project_id])
-
-   @flats = @project.flats
-   render :layout => "admin/application"
-end
-
-
-def flatsnew
-  @project= Project.find_by_id(params[:project_id])
-
-  @flat = Flat.new
-  render :layout => "admin/application"
-end
-
-def flatscreate
-
-@project= Project.find_by_id(params[:project_id])
-  @flat=Flat.create!(title:params[:title],carpet_area:params[:carpet_area],price:params[:price],project_id:params[:project_id])
-  redirect_to admin_projects_flatstype_path(project_id:@project.id)
-end
-
-def flatsedit
-  @project= Project.find_by_id(params[:project_id])
- 
-  @flat= Flat.find_by_id(params[:flat_id])
-  render :layout => "admin/application"
-end
-
- def flatsupdate
+  def flatstypes
     @project= Project.find_by_id(params[:project_id])
-    @flat= Flat.find_by_id(params[:flat_id])
-      @flat.update!(title:params[:title],carpet_area:params[:carpet_area],price:params[:price],project_id:params[:project_id])
-      redirect_to admin_projects_flatstype_path(project_id:@project.id)
 
+     @flats = @project.flats
+     render :layout => "admin/application"
   end
 
-    def flatsdelete
-      @project= Project.find_by_id(params[:project_id])
-      p @project
-       @flat = Flat.find_by_id(params[:id])
-       
-     
-       @flat.destroy
-       redirect_to admin_projects_flatstype_path(project_id:@project.id)
 
+  def flatsnew
+    @project= Project.find_by_id(params[:project_id])
 
-    end 
+    @flat = Flat.new
+    render :layout => "admin/application"
+  end
 
+  def flatscreate
 
+  @project= Project.find_by_id(params[:project_id])
+    @flat=Flat.create!(title:params[:title],carpet_area:params[:carpet_area],price:params[:price],project_id:params[:project_id])
+    redirect_to admin_projects_flatstype_path(project_id:@project.id)
+  end
+
+  def flatsedit
+    @project= Project.find_by_id(params[:project_id])
+   
+    @flat= Flat.find_by_id(params[:flat_id])
+    render :layout => "admin/application"
+  end
+
+  def flatsupdate
+    @project= Project.find_by_id(params[:project_id])
+    @flat= Flat.find_by_id(params[:flat_id])
+    @flat.update!(title:params[:title],carpet_area:params[:carpet_area],price:params[:price],project_id:params[:project_id])
+      redirect_to admin_projects_flatstype_path(project_id:@project.id)
+  end
+
+  def flatsdelete
+    @project= Project.find_by_id(params[:project_id])
+    @flat = Flat.find_by_id(params[:id])
+    @flat.destroy
+    redirect_to admin_projects_flatstype_path(project_id:@project.id)
+  end 
 end

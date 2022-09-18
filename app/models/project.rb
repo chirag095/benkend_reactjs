@@ -12,6 +12,7 @@ class Project < ApplicationRecord
      belongs_to :seo,optional:true
      belongs_to :highlight, optional:true
      has_many   :flats,dependent: :destroy
+     has_many   :galleries,dependent: :destroy
 
    def image_url
       Rails.application.routes.url_helpers.url_for(image)

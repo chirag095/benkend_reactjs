@@ -53,12 +53,21 @@ Rails.application.routes.draw do
   get "/projects/edit/:id" => "projects#edit",as:"projects_edit" 
   get "/projects/delete/:id" => "projects#delete",as:"projects_delete"
   post "/projects/update/:id" => "projects#update",as:"projects_update"
+  
+
   get"/projects/flatstype/:project_id" => "projects#flatstypes",as:"projects_flatstype"
   get "/projects/flatsnew/:project_id" => "projects#flatsnew",as:"projects_flatsnew"
   post "/projects/flatscreate" =>"projects#flatscreate",as:"project_flatscreate"
   get "/projects/flatsedit/:project_id/:flat_id"=>"projects#flatsedit",as:"project_flatsedit"
   post"/projects/flatsupdate"=>"projects#flatsupdate",as:"project_flatsupdate"
   get "/projects/flatsdelete"=>"projects#flatsdelete",as:"project_flatsdelete"
+  
+
+  get "/gallerys/index/:project_id"=> "gallerys#index",as:"gallerys_index"
+  get"/gallerys/new/:project_id" => "gallerys#new",as:"gallerys_new"
+  post"/gallerys/create/:project_id"=> "gallerys#create",as:"gallerys_create"
+
+  
 
   get "update/status/:id" => "projects#update_status",as:"update_status"
   get "/seo_tools/index" => "seo_tools#index", as: "seo_tools_index"
@@ -88,6 +97,8 @@ Rails.application.routes.draw do
        post "update/project" => "progects#update_project"
        get "delete/project" => "progects#delete_project"
        post "show/cities" => "progects#cities_show" 
+       post "newshow/cities" =>"progects#cities_newshow"
+       post "newshow/localities"=>"progects#localities_newshow"
 
        get "/amenities" => "amenities#amenity_list"
        post "create/amenities" => "amenities#create_amenity"

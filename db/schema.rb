@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_11_190754) do
+ActiveRecord::Schema.define(version: 2022_09_17_201557) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -95,6 +95,13 @@ ActiveRecord::Schema.define(version: 2022_09_11_190754) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_galleries_on_project_id"
   end
 
   create_table "highlights", force: :cascade do |t|
@@ -197,6 +204,7 @@ ActiveRecord::Schema.define(version: 2022_09_11_190754) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "flats", "projects"
+  add_foreign_key "galleries", "projects"
   add_foreign_key "localities", "city_ls"
   add_foreign_key "projects", "amenities"
   add_foreign_key "projects", "builders"
