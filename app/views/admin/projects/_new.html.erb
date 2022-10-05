@@ -9,7 +9,7 @@
  <div class="form-group row">
         <label class="col-sm-3 col-form-label">Image</label>
           <div class="col-sm-6">
-            <img src="<%=@projects.image.attached? ? url_for(@projects.image) : '/assets/download.jpeg'%>" class="img-tag img1" style="width:200px;height:200px;">
+            <img src="<%=@projects.image.present? ? @projects.image : '/assets/download.jpeg'%>" class="img-tag img1" style="width:200px;height:200px;">
               <input type="file" 
                      name="image" id="img1" onchange='readURL(event)' >
           </div>
@@ -21,7 +21,32 @@
                         <input type="text" name = "title" placeholder="Project Name" class="form-control"value="<%=@projects.title%>" autocomplete = "off">
                      </div>
                   </div>
-              
+
+                  <div class="form-group row">
+                     <label class="col-sm-3 col-form-label">Project New Title</label>
+                     <div class="col-sm-7">
+                        <input type="text" name = "new_title" placeholder="Project New Title" class="form-control"value="<%=@projects.new_title%>" autocomplete = "off">
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label class="col-sm-3 col-form-label">Project Features</label>
+                     <div class="col-sm-7">
+                        <input type="text" name = "project_features" placeholder="Project Features" class="form-control"value="<%=@projects.project_features%>" autocomplete = "off">
+                     </div>
+                  </div>
+ <div class="form-group row">
+                     <label class="col-sm-3 col-form-label">Project Starting Price</label>
+                     <div class="col-sm-7">
+                        <input type="text" name = "start_price" placeholder="Starting Price" class="form-control"value="<%=@projects.start_price%>" autocomplete = "off">
+                     </div>
+                  </div>
+
+              <div class="form-group row">
+                     <label class="col-sm-3 col-form-label">Project Status</label>
+                     <div class="col-sm-7">
+                        <input type="text" name = "project_status" placeholder="Project Status" class="form-control"value="<%=@projects.project_status%>" autocomplete = "off">
+                     </div>
+                  </div>
                    <div class="form-group row">
                      <label class="col-sm-3 col-form-label">Project Type</label>
                      <div class="col-sm-7">
@@ -102,8 +127,10 @@
                   <div class="form-group row">
                      <label class="col-sm-3 col-form-label">Project Overview</label>
                      <div class="col-sm-7">
-                        <input type="text" name = "project_overview" placeholder="Project Overview" class="form-control" value="<%=@projects.project_overview%>" autocomplete = "off">
-                        <!-- <textarea name="title" class="form-control"></textarea> -->
+                        <!-- <input type="text" name = "project_overview" placeholder="Project Overview" class="form-control" value="<%#=@projects.project_overview%>" autocomplete = "off"> -->
+                      
+                        <textarea class="form-control" name = "project_overview" id="exampleFormControlTextarea1" value="<%=@projects.project_overview%>" rows="3"autocomplete = "off"></textarea>
+                       
                      </div>
                   </div>
                   <div class="form-group row">

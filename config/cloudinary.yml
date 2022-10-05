@@ -1,0 +1,12 @@
+---
+development: 
+  cloud_name: "dtzqeak8b"
+  api_key: "998755272668529"
+  api_secret: "Hoegz5ws385xprymKuCk9yDDzuw"
+  secure: true
+
+# production:
+#   cloud_name: "dtzqeak8b"
+#   api_key: "998755272668529"
+#   api_secret: "Hoegz5ws385xprymKuCk9yDDzuw"
+#   secure:true

@@ -23,7 +23,8 @@ gem 'jbuilder', '~> 2.7'
  gem 'bcrypt', '~> 3.1.7'
 gem "font-awesome-rails"
 gem 'rack-cors', :require => 'rack/cors'
-gem 'carrierwave'   
+gem 'carrierwave'  
+gem 'cloudinary' 
 # gem "mail"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

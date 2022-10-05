@@ -33,7 +33,9 @@ class Admin::ProjectsController < ApplicationController
   end
 
  def create
-  @projects = Project.create!(title:params[:title], project_type:params[:project_type] ,image:params[:image],
+  image = upload_multipart_image(params[:image],"Banner","")
+
+  @projects = Project.create!(title:params[:title],new_title:params[:new_title],project_type:params[:project_type] ,image:image,
                            assets_type:params[:assets_type] ,
                            project_status:params[:project_status],
                             launch_date:params[:launch_date] ,
@@ -44,7 +46,7 @@ class Admin::ProjectsController < ApplicationController
                               site_Plan_content:params[:site_Plan_content],
                               amenity_id:params[:amenity_id],
                               builder_id:params[:builder_id],
-                              city_l_id:params[:city_l_id],
+                              city_l_id:params[:city_l_id],start_price:params[:start_price],
                               locality_id:params[:locality_id],seo_id:params[:seo_id],
                               state_id:params[:state_id],highlight_id:params[:highlights_id])
     redirect_to admin_projects_index_path
@@ -64,8 +66,10 @@ class Admin::ProjectsController < ApplicationController
 
   def update
     @projects = Project.find_by_id(params[:id])
-      @projects.update!(title:params[:title],image:params[:image],
-                           project_type:params[:project_type],image:params[:image],
+      image = params[:image].present? ? upload_multipart_image(params[:image],"Banner","") : upload_multipart_image(@projects.image,"Banner","") 
+   
+      @projects.update!(title:params[:title],new_title:params[:new_title],image:image,
+                           project_type:params[:project_type],
                               assets_type:params[:assets_type] ,
                            project_status:params[:project_status],
                             launch_date:params[:launch_date] ,
@@ -76,7 +80,7 @@ class Admin::ProjectsController < ApplicationController
                               site_Plan_content:params[:site_Plan_content],
                               amenity_id:params[:amenity_id],
                               builder_id:params[:builder_id],
-                              city_l_id:params[:city_l_id],
+                              city_l_id:params[:city_l_id],start_price:params[:start_price],
                               locality_id:params[:locality_id],seo_id:params[:seo_id],
                               state_id:params[:state_id],highlight_id:params[:highlights_id])
       redirect_to admin_projects_index_path
@@ -136,4 +140,16 @@ class Admin::ProjectsController < ApplicationController
     @flat.destroy
     redirect_to admin_projects_flatstype_path(project_id:@project.id)
   end 
+
+  def upload_multipart_image image,folder_name,prevImg
+   
+     # begin
+      directory = "#{folder_name}#{ENV['CURRENT'].present? ? "/#{ENV['CURRENT']}" : ''}"
+      res = Cloudinary::Uploader.destroy("#{directory}/#{prevImg.split('/').last.split('.')[0]}") if prevImg.present?
+      m = Cloudinary::Uploader.upload(image,:folder => "/#{directory}/",:transformation=>[{:angle=>0}])
+      url = m["secure_url"]
+    # rescue Exception => e
+    #   ""
+    # end
+  end
 end

@@ -8,11 +8,15 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
 
     def details_project
 
-        @project = Project.find_by_id(params[:id])
+        @project = Project.find_by_slug(params[:id])
         res = []
         galleries = []
+        
         if @project.present?
            amenity = @project.amenity.title
+           seo_title = @project.seo.title
+           seo_description = @project.seo.description
+           seo_keyword = @project.seo.keyword
            t = @project.highlight.title
            t1 = @project.highlight.title1
            t2 = @project.highlight.title2
@@ -27,7 +31,7 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
            @project.galleries.each do |g|
             galleries << g.as_json(only:[:id],include: [image: {methods: :service_url}])
            end
-           data = @project.as_json(only:[:id,:title,:project_type,:assets_type,:site_Plan_content,:project_overview,:location_map_content,:possession_date,:site_Plan_content,:project_features,:launch_date],include: [image: {methods: :service_url}]).merge(amenity:amenity,t:t,title1:t1,title2:t2,title3:t3,title4:t4,title5:t5,title6:t6,title7:t7,flats:res,gallary:galleries)
+           data = @project.as_json(only:[:id,:title,:project_type,:assets_type,:image,:site_Plan_content,:project_overview,:location_map_content,:new_title,:possession_date,:site_Plan_content,:project_features,:launch_date]).merge(amenity:amenity,seo_title:seo_title,seo_description:seo_description,seo_keyword:seo_keyword,t:t,title1:t1,title2:t2,title3:t3,title4:t4,title5:t5,title6:t6,title7:t7,flats:res,gallary:galleries)
            render json:{code:200,message:"success",project:data }
         else  
            render json:{code:402,message:"please provide valid project Id?"}
@@ -36,7 +40,7 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
    
 
     def create_project
-       @project = Project.create!(title:params[:title], project_type:params[:project_type] ,
+       @project = Project.create!(title:params[:title],new_title:params[:new_title],project_type:params[:project_type] ,
                            assets_type:params[:assets_type] ,
                            project_status:params[:project_status],
                             launch_date:params[:launch_date] ,
@@ -48,14 +52,14 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
                               amenity_id:params[:amenity_id],
                               builder_id:params[:builder_id],
                               city_l_id:params[:city_l_id],
-                              locality_id:params[:locality_id],
+                              locality_id:params[:locality_id],start_price:params[:start_price],
                               state_id:params[:state_id])
        render json:{code:201,message:"create project",project:@project}
      end  
     
      def update_project
     @projects = Project.find_by_id(params[:project_id])
-      @projects.update!(title:params[:title],
+      @projects.update!(title:params[:title],new_title:params[:new_title],
                            project_type:params[:project_type],
                               assets_type:params[:assets_type] ,
                            project_status:params[:project_status],
@@ -68,7 +72,7 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
                               amenity_id:params[:amenity_id],
                               builder_id:params[:builder_id],
                               city_l_id:params[:city_l_id],
-                              locality_id:params[:locality_id],
+                              locality_id:params[:locality_id],start_price:params[:start_price],
                               state_id:params[:state_id])
       render json:{code:203,message:"update",project:@projects}
 
@@ -102,11 +106,11 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
     def cities_newshow
         data = []
         local =''
-        @city = CityL.find_by_id(params[:city_id])
+        @city = CityL.find_by_slug(params[:city_id])
         if @city.present?
           @localities = Locality.where("city_l_id=?",@city.id)
             @localities.each do |l|
-            data << l.as_json(only:[:id, :title])
+            data << l.as_json(only:[:id, :title,:slug])
             end   
             render json:{code:200,message:"success",locality:data }
         else
@@ -116,17 +120,23 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
 
     def localities_newshow
     data =[]
-    local =''
-         @locality = Locality.find_by_id(params[:locality_id])
+         @locality = Locality.find_by_slug(params[:locality_id])
         if @locality.present?
             @projects =Project.where("locality_id =? and status=?",@locality.id,true)
-            @projects.each do |pro|  
-                data << pro.as_json(only:[:id,:title,:project_overview],include: [image: {methods: :service_url}]) 
+            @projects.each do |pro| 
+                 locality_title = pro.locality.title
+                data << pro.as_json(only:[:id,:title,:project_overview,:start_price,:image,:assets_type,:project_features,:project_status,:project_type,:new_title,:slug]).merge(locality_title:locality_title) 
             end   
             render json:{code:200,message:"success",project:data }
         else
             render json:{code:402,message:"please provide valid Locality Id?"}
         end 
-    end       
+    end 
+
+    def customer_create
+       @project = Project.find_by_id(params[:project_id])
+       @customers = Customer.create!(name:params[:name],email:params[:email],contact:params[:contact],countery_code: "+91",project_id:@project.id)
+        render json:{code:200,message:"success"}
+    end      
 
 end

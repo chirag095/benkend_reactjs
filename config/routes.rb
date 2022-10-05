@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   get "/projects/flatsedit/:project_id/:flat_id"=>"projects#flatsedit",as:"project_flatsedit"
   post"/projects/flatsupdate"=>"projects#flatsupdate",as:"project_flatsupdate"
   get "/projects/flatsdelete"=>"projects#flatsdelete",as:"project_flatsdelete"
+
   
 
   get "/gallerys/index/:project_id"=> "gallerys#index",as:"gallerys_index"
@@ -86,19 +87,29 @@ Rails.application.routes.draw do
      get "/highlights/edit/:id" =>"highlights#edit",as:"highlights_edit"
      get"/highlights/delete/:id" =>"highlights#delete",as:"highlights_delete"
 
+
+
+     get "/logos/index"=> "logos#index",as:"logos_index"
+     get"/logos/new"=> "logos#new",as:"logos_new"
+     post"/logos/create"=> "logos#create",as:"logos_create"
+     post"/logos/update"=> "logos#update",as:"logos_update"
+     get"/logos/edit/:id"=> "logos#edit",as:"logos_edit"
+     get"/logos/delete/:id"=> "logos#delete",as:"logos_delete"
+
    # resources :projects 
   get "/landing" => "landing#index"
   end
    namespace :api, defaults: {format: 'json'}do
        namespace :v1 do
        post "/projects" => "progects#details_project"
-       get "/projects" => "progects#project_list"
+       get "/projects/list" => "progects#project_list"
        post "create/project" => "progects#create_project"
        post "update/project" => "progects#update_project"
        get "delete/project" => "progects#delete_project"
        post "show/cities" => "progects#cities_show" 
        post "newshow/cities" =>"progects#cities_newshow"
        post "newshow/localities"=>"progects#localities_newshow"
+       post "customer/create" => "progects#customer_create"
 
        get "/amenities" => "amenities#amenity_list"
        post "create/amenities" => "amenities#create_amenity"

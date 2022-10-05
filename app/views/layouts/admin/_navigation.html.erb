@@ -20,6 +20,12 @@
                     IN+
                 </div>
             </li>
+            <li class="<%= is_active_controller('user')%>">
+                <%=link_to admin_index_path do%>
+                <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+                User List</apan>
+                <%end%>
+            </li>
          
             <li class="<%= is_active_controller('city')%>">
                 <%=link_to admin_city_index_path do%>
@@ -72,6 +78,13 @@
                 <%=link_to admin_highlights_index_path do%>
             <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
             Highlights</apan>
+            <%end%>
+        </li>   
+
+        <li class="<%= is_active_controller('logo')%>">
+                <%=link_to admin_logos_index_path do%>
+            <i class="fa fa fa-diamond"></i> <span class="nav-lable" data-i 18n="nav.layouts">
+            Logo&Contact</apan>
             <%end%>
         </li>   
 

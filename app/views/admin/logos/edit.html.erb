@@ -1,0 +1,59 @@
+<style type="text/css">
+          <link rel="stylesheet" type="text/css" href="./style.css" />
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <div class="col-lg-3"><h2>Edit Logo&Contact</h2></div>
+    <div class="col-lg-9">
+      <!-- <a href="<%#=admin_new_item_path(params[:id])%>" class="btn btn-danger btn-lg pull-right" style="margin-top: 2%;"><i class="fa fa-plus"></i> Add Menu Item </a> -->
+    </div>  
+  </div> 
+</div>
+<div class="row"> 
+  <div class="col-lg-10"style="padding-left:200px;">
+    <div class="ibox">
+      <div class="col-lg-12">
+        <br>
+        <%=form_for :user,url: admin_logos_update_path,:html=>{:id=>"new_form",:class=>"form",:multipart =>true} do |cl|%>
+          <div class="panel panel-info">
+            <div class="panel-heading">User Details</div>
+            <div class="panel-body">
+              <input type="hidden" name="id" value="<%=@logo.id%>">
+                                    
+             
+             <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Contact NUmber </label>
+                <div class="col-sm-7">
+                   <input type="text" name = "Contact" placeholder="Contacts" class="form-control" value = "<%=@logo.Contact%>"autocomplete = "off">
+                </div>
+             </div>
+           
+        <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Country Code</label>
+                <div class="col-sm-7">
+                   <input type="text" name = "country_code" placeholder="Cuntry code" class="form-control" value = "<%=@logo.country_code%>"autocomplete = "off">
+                </div>
+             </div>
+             
+          <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Logo Image</label>
+          <div class="col-sm-6">
+           <img src="<%=@logo.image.attached? ? url_for(@logo.image) : '/assets/download.jpeg'%>" class="img-tag img1" style="width:200px;height:200px;"> 
+              <input type="file" 
+                     name="image" id="img1" onchange='readURL(event)'required=true>
+          </div>
+      </div>
+          
+            
+              <div class="form-group">
+                <button class="btn btn-md btn-primary float-right m-t-n-xs pull-right" type="submit" style= "margin-top: -23px;"id="submit"><strong>Submit</strong></button>     
+              </div>           
+            </div>
+          </div>
+        <%end%> 
+      </div>
+    </div>
+  </div>
+</div>    
+
+

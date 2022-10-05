@@ -35,6 +35,10 @@
                         <th>Title</th>
                         
                         <th>Project Type</th>
+                         <th>Project New Title</th>
+                         <th>Project Features</th>
+                         <th>Project Start Price</th>
+                         <th>Project Status</th>
                         <th>Select Builders</th>
                         <th>Select Amenity</th>
                         <th>Select States</th>
@@ -61,10 +65,14 @@
                      <tbody>
                         <tr>
                            <td><%=pro.id%></td>
-                            <td><img src="<%=pro.image.attached? ? url_for(pro.image) : '/assets/download.jpeg'%>"style="width: 100px;height: 100px;"></td>
+                            <td><img src="<%=pro.image.present? ? pro.image : '/assets/download.jpeg'%>"style="width: 100px;height: 100px;"></td>
                            <td><%=pro.title%></td>
                      
                             <td><%=pro.project_type %></td>
+                            <td><%=pro.new_title%></td>
+                            <td><%=pro.project_features%></td>
+                            <td><%=pro.start_price%></td>
+                            <td><%=pro.project_status%></td>
                            <td><%=pro.builder.title%></td>
                            <td><%=pro.amenity.title%></td>
                            <td><%=pro.state.title%></td>
@@ -73,7 +81,7 @@
                            <td><%=pro.assets_type%></td>
                            <td><%=pro.location_map_content%></td>
                            <td><%=pro.site_Plan_content%></td>
-                            <td><%=pro.project_overview%></td>
+                            <td><p style="width: 544px;"><%=pro.project_overview%></p></td>
                             <td><%=pro&.seo&.title%></td>
                             <td><%=pro&.seo&.description%></td>
                              <td><%=pro&.seo&.keyword%></td>
@@ -87,10 +95,15 @@
                            </td>
                          
                            <td>
-                              <a href="<%=admin_projects_edit_path(id:pro.id)%>"class="btn btn-success btn-md"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                              <a href="<%=admin_projects_index_path(id:pro.id)%>"class="btn btn-success btn-md"><i class="fa fa-pencil" aria-hidden="true">show</i></a>
-                              <a href="<%=admin_projects_flatstype_path(project_id:pro.id)%>"class="btn btn-success btn-md">Flats Price</a>
-                              <a href="<%=admin_gallerys_index_path(project_id:pro.id)%>"class="btn btn-success btn-md">Project Gallery</a>
+                              <a href="<%=admin_projects_edit_path(id:pro.id)%>"class="btn btn-success btn-md"><i class="fa fa-pencil" aria-hidden="true">Edit</i></a>&nbsp;&nbsp;
+                              <a href="<%=admin_projects_index_path(id:pro.id)%>"class="btn btn-success btn-md">Show</a>&nbsp;&nbsp;
+
+
+                              <a href="<%=admin_projects_flatstype_path(project_id:pro.id)%>"class="btn btn-success btn-md">Flats Price</a>&nbsp;&nbsp;
+
+
+                              <a href="<%=admin_gallerys_index_path(project_id:pro.id)%>"class="btn btn-success btn-md">Project Gallery</a>&nbsp;&nbsp;
+
                               <a class="btn btn-danger btn-md remove" rel="<%=pro.id%>"><i class="fa fa-trash"></i></a>  
                            </td>
                         </tr>

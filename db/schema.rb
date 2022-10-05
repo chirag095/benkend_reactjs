@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_17_201557) do
+ActiveRecord::Schema.define(version: 2022_10_05_134632) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,12 +68,25 @@ ActiveRecord::Schema.define(version: 2022_09_17_201557) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_city_ls_on_slug", unique: true
   end
 
   create_table "city_types", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "contact"
+    t.string "countery_code"
+    t.integer "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_customers_on_project_id"
   end
 
   create_table "flats", force: :cascade do |t|
@@ -122,7 +135,16 @@ ActiveRecord::Schema.define(version: 2022_09_17_201557) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "city_l_id"
+    t.string "slug"
     t.index ["city_l_id"], name: "index_localities_on_city_l_id"
+    t.index ["slug"], name: "index_localities_on_slug", unique: true
+  end
+
+  create_table "logos", force: :cascade do |t|
+    t.string "Contact"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "country_code"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -147,10 +169,15 @@ ActiveRecord::Schema.define(version: 2022_09_17_201557) do
     t.integer "seo_id"
     t.integer "city_l_id"
     t.integer "highlight_id"
+    t.integer "logo_id"
+    t.string "new_title"
+    t.string "start_price"
+    t.string "image"
     t.index ["amenity_id"], name: "index_projects_on_amenity_id"
     t.index ["builder_id"], name: "index_projects_on_builder_id"
     t.index ["city_l_id"], name: "index_projects_on_city_l_id"
     t.index ["locality_id"], name: "index_projects_on_locality_id"
+    t.index ["logo_id"], name: "index_projects_on_logo_id"
     t.index ["seo_id"], name: "index_projects_on_seo_id"
     t.index ["slug"], name: "index_projects_on_slug", unique: true
     t.index ["state_id"], name: "index_projects_on_state_id"
@@ -203,6 +230,7 @@ ActiveRecord::Schema.define(version: 2022_09_17_201557) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "customers", "projects"
   add_foreign_key "flats", "projects"
   add_foreign_key "galleries", "projects"
   add_foreign_key "localities", "city_ls"
@@ -210,6 +238,7 @@ ActiveRecord::Schema.define(version: 2022_09_17_201557) do
   add_foreign_key "projects", "builders"
   add_foreign_key "projects", "city_ls"
   add_foreign_key "projects", "localities"
+  add_foreign_key "projects", "logos"
   add_foreign_key "projects", "seos"
   add_foreign_key "projects", "states"
   add_foreign_key "sessions", "users"
