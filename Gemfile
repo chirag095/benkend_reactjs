@@ -37,6 +37,7 @@ gem 'sprockets-rails', '3.4.1'
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap-sass', '3.3.6'
 gem 'friendly_id', '~> 5.1.0'
+gem 'sitemap_generator'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 # gem "letter_opener", :group => :development
