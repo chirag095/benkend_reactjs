@@ -1,5 +1,5 @@
 class Admin::GallerysController < ApplicationController
-
+    before_action :loggedin_admin
 	def index
 		@project= Project.find_by_id(params[:project_id])
 		@gallerys = @project.galleries

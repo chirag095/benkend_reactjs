@@ -1,4 +1,5 @@
 class Admin::StatesController < ApplicationController
+  before_action :loggedin_admin
 def index
 	@states = State.all
 	render :layout => "admin/application"

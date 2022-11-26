@@ -11,7 +11,7 @@ class Project < ApplicationRecord
      belongs_to :state
      belongs_to :seo,optional:true
      belongs_to :highlight, optional:true
-     has_many   :flats,ddependent: :nullify
+     has_many   :flats,dependent: :nullify
      has_many   :galleries,dependent: :nullify
 
    def image_url

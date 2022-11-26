@@ -1,4 +1,5 @@
 class Admin::AmenitiesController < ApplicationController
+  before_action :loggedin_admin
   def index
      
      @amenities = Amenity.all

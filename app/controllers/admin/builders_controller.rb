@@ -1,4 +1,5 @@
 class Admin::BuildersController < ApplicationController
+  before_action :loggedin_admin
 def index
      
      @builders = Builder.all

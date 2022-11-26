@@ -1,4 +1,5 @@
 class Admin::SeoToolsController < ApplicationController
+    before_action :loggedin_admin
 def index
    @seo_tools = Seo.all
     render :layout => "admin/application"

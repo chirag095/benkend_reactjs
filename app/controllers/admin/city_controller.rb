@@ -1,4 +1,5 @@
 class Admin::CityController < ApplicationController
+  before_action :loggedin_admin
   def index
    @city = CityL.all
     render :layout => "admin/application"

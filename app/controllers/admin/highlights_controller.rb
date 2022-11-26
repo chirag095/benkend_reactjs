@@ -1,5 +1,5 @@
 class Admin::HighlightsController < ApplicationController
-
+  before_action :loggedin_admin
   def index
 	@highlights = Highlight.all
 	 render :layout => "admin/application"

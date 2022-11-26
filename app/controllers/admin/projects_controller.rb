@@ -1,5 +1,5 @@
 class Admin::ProjectsController < ApplicationController
-	
+	before_action :loggedin_admin
 
 
   def index

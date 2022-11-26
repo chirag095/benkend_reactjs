@@ -1,5 +1,5 @@
 class Admin::LogosController < ApplicationController
-
+before_action :loggedin_admin
 def index
 	@logos = Logo.all
 	 render :layout => "admin/application"

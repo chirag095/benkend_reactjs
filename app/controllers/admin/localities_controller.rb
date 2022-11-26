@@ -1,4 +1,5 @@
 class Admin::LocalitiesController < ApplicationController
+  before_action :loggedin_admin
 def index
      
      @localities = Locality.all
