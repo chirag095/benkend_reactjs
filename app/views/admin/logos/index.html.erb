@@ -34,6 +34,7 @@
                     <thead>
                     <tr>
                        <th>Id</th>
+                        <th>Logo Title</th>
                         <th>Contact</th>
                         <th>Countery Code</th>
                         <th>Logo Image</th>
@@ -47,7 +48,9 @@
                     <% @logos.each do |lc|%>
                     <tbody>
                     <tr>
+
                         <td><%=lc.id%></td>
+                        <td><%=lc.title%></td>
                         <td><%=lc.Contact%></td>
                         <td><%=lc.country_code%></td>
                         <td> <img src="<%=lc.image.attached? ? url_for(lc.image) : '/assets/download.jpeg'%>"style="width: 100px;height: 100px;"></td>

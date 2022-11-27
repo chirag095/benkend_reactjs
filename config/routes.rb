@@ -67,7 +67,9 @@ Rails.application.routes.draw do
   get "/gallerys/index/:project_id"=> "gallerys#index",as:"gallerys_index"
   get"/gallerys/new/:project_id" => "gallerys#new",as:"gallerys_new"
   post"/gallerys/create/:project_id"=> "gallerys#create",as:"gallerys_create"
-
+  get "/gallerys/edit/:project_id"=> "gallerys#edit",as:"gallerys_edit"
+   get "/gallerys/delete/:project_id"=> "gallerys#delete",as:"gallerys_delete"
+   post "/gallerys/update/:project_id"=>"gallerys#update",as:"gallerys_update"
   
 
   get "update/status/:id" => "projects#update_status",as:"update_status"

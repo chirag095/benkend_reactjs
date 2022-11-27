@@ -28,10 +28,13 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
            @project.flats.each do |flat|
             res << flat.as_json(only:[:id,:title,:carpet_area,:price])
            end
+            @logo = @project.logo.as_json(only:[:id,:Contact,:country_code],include: [image: {methods: :service_url}])
+           
+
            @project.galleries.each do |g|
             galleries << g.as_json(only:[:id],include: [image: {methods: :service_url}])
            end
-           data = @project.as_json(only:[:id,:title,:project_type,:assets_type,:image,:site_Plan_content,:project_overview,:location_map_content,:new_title,:possession_date,:site_Plan_content,:project_features,:launch_date]).merge(amenity:amenity,seo_title:seo_title,seo_description:seo_description,seo_keyword:seo_keyword,t:t,title1:t1,title2:t2,title3:t3,title4:t4,title5:t5,title6:t6,title7:t7,flats:res,gallary:galleries)
+           data = @project.as_json(only:[:id,:title,:project_type,:assets_type,:image,:site_Plan_content,:project_overview,:location_map_content,:new_title,:possession_date,:site_Plan_content,:project_features,:launch_date]).merge(amenity:amenity,seo_title:seo_title,seo_description:seo_description,seo_keyword:seo_keyword,t:t,title1:t1,title2:t2,title3:t3,title4:t4,title5:t5,title6:t6,title7:t7,flats:res,gallary:galleries,logo:@logo)
            render json:{code:200,message:"success",project:data }
         else  
            render json:{code:402,message:"please provide valid project Id?"}

@@ -13,7 +13,7 @@ def index
 
 
 def create
-  	    Logo.create(Contact:params[:Contact],country_code:params[:country_code],image:params[:image])
+  	    Logo.create(Contact:params[:Contact],country_code:params[:country_code],image:params[:image],title:params[:title])
        redirect_to admin_logos_index_path
    end
 
@@ -26,14 +26,14 @@ def edit
 
 def update
   @logo = Logo.find_by_id(params[:id])
-  @logo.update(Contact:params[:Contact],country_code:params[:country_code],image:params[:image])
+  @logo.update(Contact:params[:Contact],country_code:params[:country_code],image:params[:image],title:params[:title])
        redirect_to admin_logos_index_path
 
      end
 
 def delete
   @logo = Logo.find_by_id(params[:id])
-  @logo.destroy
+  @logo.delete
   redirect_to admin_logos_index_path
    end
 

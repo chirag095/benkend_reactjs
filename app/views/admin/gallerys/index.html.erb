@@ -4,10 +4,10 @@
     <div class="col-lg-12">
         <div class="ibox ">
             <div class="ibox-title">
-                <h5>Amenities</h5>
+                <h5>Gallery</h5>
                 
                   <!-- <div class="col-lg-9"> -->
-                      <a href="<%=admin_gallerys_new_path(project_id:@project.id)%>" class="btn btn-danger pull-right" style="margin-top: -7px; margin-right: 73px;"><i class="fa fa-plus"></i> Add Amenities </a>
+                      <a href="<%=admin_gallerys_new_path(project_id:@project.id)%>" class="btn btn-danger pull-right" style="margin-top: -7px; margin-right: 73px;"><i class="fa fa-plus"></i> Add Gallery</a>
                     <!-- </div>  -->
                 <div class="ibox-tools">
                     <a class="collapse-link">
@@ -48,10 +48,19 @@
                         <td><%=g.id%></td>
                         <td> <img src="<%=g.image.attached? ? url_for(g.image) : '/assets/download.jpeg'%>"style="width: 100px;height: 100px;"></td>
                         <td><%=g.project.title %></td>
-                        <td></td>
+                        <td>
+                            
 
-                    </tr>
-                  
+
+
+                            <a href="<%=admin_gallerys_edit_path(id:g.id)%>"class="btn btn-success btn-md"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                         
+                            <a class="btn btn-danger btn-md remove" rel="<%=g.id%>"><i class="fa fa-trash"></i></a>  
+                        
+                        </td>
+
+                    
+                       </tr>
                     </tbody>
                     <%end%>
                 </table>
@@ -79,7 +88,7 @@
     },
     function(remove) {
         if (remove) {
-          window.location = "/admin/amenities/delete/"+id
+          window.location = "/admin/gallerys/delete/"+id
           swal("Deleted!", "Your Category has been deleted.", "success");
         } else {
           swal("Cancelled", "Your Category is safe", "error");

@@ -16,6 +16,7 @@ class Admin::ProjectsController < ApplicationController
     @states = State.all
     @seo_tools= Seo.all
     @highlights=Highlight.all
+    @logos=Logo.all
 
     render :layout => "admin/application"
   end
@@ -28,6 +29,7 @@ class Admin::ProjectsController < ApplicationController
     @states = State.all
     @seo_tools= Seo.all
     @highlights=Highlight.all
+    @logos=Logo.all
     @projects = Project.friendly.find(params[:id])
      render :layout => "admin/application"
   end
@@ -46,6 +48,7 @@ class Admin::ProjectsController < ApplicationController
                               site_Plan_content:params[:site_Plan_content],
                               amenity_id:params[:amenity_id],
                               builder_id:params[:builder_id],
+                              logo_id:params[:logo_id],
                               city_l_id:params[:city_l_id],start_price:params[:start_price],
                               locality_id:params[:locality_id],seo_id:params[:seo_id],
                               state_id:params[:state_id],highlight_id:params[:highlights_id])
@@ -60,6 +63,7 @@ class Admin::ProjectsController < ApplicationController
     @states = State.all
     @seo_tools = Seo.all
     @highlights=Highlight.all
+    @logos=Logo.all
     @projects = Project.friendly.find(params[:id])
     render :layout => "admin/application"
   end
@@ -80,6 +84,7 @@ class Admin::ProjectsController < ApplicationController
                               site_Plan_content:params[:site_Plan_content],
                               amenity_id:params[:amenity_id],
                               builder_id:params[:builder_id],
+                              logo_id:params[:logo_id],
                               city_l_id:params[:city_l_id],start_price:params[:start_price],
                               locality_id:params[:locality_id],seo_id:params[:seo_id],
                               state_id:params[:state_id],highlight_id:params[:highlights_id])

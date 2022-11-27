@@ -23,6 +23,19 @@
                   </div>
 
                   <div class="form-group row">
+                     <label class="col-sm-3 col-form-label"  for="project">Logo Title</label>
+                     <div class="col-sm-7">
+                        <select id="project" input type="text" name = "logo_id" placeholder ="Project Type" class="form-control" autocomplete = "off">
+                           <%@logos.each do |lc|%>
+                           
+                           <option value="<%=lc.id%>" <%if lc.id==@projects&.logo&.id%> selected<%end%>><%=lc.title%></option>
+                           <%end%>
+                        </select>
+                     </div>
+                  </div>
+                   
+
+                  <div class="form-group row">
                      <label class="col-sm-3 col-form-label">Project New Title</label>
                      <div class="col-sm-7">
                         <input type="text" name = "new_title" placeholder="Project New Title" class="form-control"value="<%=@projects.new_title%>" autocomplete = "off">
@@ -98,10 +111,12 @@
                      <label class="col-sm-3 col-form-label"  for="project">Assets Type</label>
                      <div class="col-sm-7">
                         <select id="project" input type="text" name = "assets_type" placeholder ="Assets Type" class="form-control" value="<%=@projects.assets_type%>" autocomplete = "off">
-                           <option value="pune" selected>pune</option>
-                           <option value="Godrej">Godrej</option>
+                           <option value="pune" selected></option>
+                           <option value="Godrej">Godrej Group</option>
                            <option value="Shapoorji Group">Shapoorji Group</option>
-                           <option value="Mahindra">Mahindra</option>
+                           <option value="Mahindra">Mahindra Group</option>
+                           <option value="Mahindra">M3M Group</option>
+                           <option value="Mahindra">Brigade Group</option>
                         </select>
                      </div>
                   </div>
