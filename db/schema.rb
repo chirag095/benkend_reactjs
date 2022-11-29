@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_28_180824) do
+ActiveRecord::Schema.define(version: 2022_11_29_173252) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 2022_11_28_180824) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "city_l_id"
     t.string "slug"
-    t.integer "seo_id", null: false
+    t.integer "seo_id"
     t.index ["city_l_id"], name: "index_localities_on_city_l_id"
     t.index ["seo_id"], name: "index_localities_on_seo_id"
     t.index ["slug"], name: "index_localities_on_slug", unique: true
