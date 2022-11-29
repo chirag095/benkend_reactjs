@@ -7,6 +7,20 @@
             <input type="text" name = "title" placeholder="city" class="form-control" value = "<%=@city.title%>"autocomplete = "off">
           </div>
       </div>
+    
+
+                <div class="form-group row">
+                     <label class="col-sm-3 col-form-label"  for="project">Seo Tools</label>
+                     <div class="col-sm-7">
+                        <select id="city" input type="text" name = "seo_id" placeholder ="Project Type" class="form-control" autocomplete = "off">
+                           <%@seo_tools.each do |s|%>
+                           
+                           <option value="<%=s.id%>" <%if s.id==@city&.seo&.id%> selected<%end%>><%=s.title%></option>
+                           <%end%>
+                        </select>
+                     </div>
+                  </div>
+
       <div class="form-group row">
         <label class="col-sm-3 col-form-label">Image</label>
           <div class="col-sm-6">

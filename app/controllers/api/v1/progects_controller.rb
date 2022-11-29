@@ -113,7 +113,10 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
         if @city.present?
           @localities = Locality.where("city_l_id=?",@city.id)
             @localities.each do |l|
-            data << l.as_json(only:[:id, :title,:slug])
+              seo_title = l.seo.title
+              description = l.seo.description
+              keyword = l.seo.keyword
+            data << l.as_json(only:[:id, :title,:slug]).merge(seo_title:seo_title,description:description,keyword:keyword)
             end   
             render json:{code:200,message:"success",locality:data }
         else

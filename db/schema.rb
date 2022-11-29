@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_27_062149) do
+ActiveRecord::Schema.define(version: 2022_11_28_180824) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_062149) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
+    t.integer "seo_id"
+    t.index ["seo_id"], name: "index_city_ls_on_seo_id"
     t.index ["slug"], name: "index_city_ls_on_slug", unique: true
   end
 
@@ -136,7 +138,9 @@ ActiveRecord::Schema.define(version: 2022_11_27_062149) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "city_l_id"
     t.string "slug"
+    t.integer "seo_id", null: false
     t.index ["city_l_id"], name: "index_localities_on_city_l_id"
+    t.index ["seo_id"], name: "index_localities_on_seo_id"
     t.index ["slug"], name: "index_localities_on_slug", unique: true
   end
 
@@ -231,10 +235,12 @@ ActiveRecord::Schema.define(version: 2022_11_27_062149) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "city_ls", "seos"
   add_foreign_key "customers", "projects"
   add_foreign_key "flats", "projects"
   add_foreign_key "galleries", "projects"
   add_foreign_key "localities", "city_ls"
+  add_foreign_key "localities", "seos"
   add_foreign_key "projects", "amenities"
   add_foreign_key "projects", "builders"
   add_foreign_key "projects", "city_ls"

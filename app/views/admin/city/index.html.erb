@@ -36,6 +36,7 @@
                     <tr>
                        <th>Id</th>
                         <th>Title</th>
+                        <th>Seo Title</th>
                         <th>Image</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -48,6 +49,7 @@
                     <tr>
                         <td><%=c.id%></td>
                         <td><%=c.title%></td>
+                        <td><%=c&.seo&.title%></td>
                         <td><img src="<%=url_for(c.image)%>"style="width: 100px;height: 100px;"></td>
                       
                         <td></td>
