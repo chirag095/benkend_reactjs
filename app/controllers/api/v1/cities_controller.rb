@@ -8,7 +8,7 @@ def cities_list
     seo_title = c.seo.title
     description = c.seo.description
     keyword = c.seo.keyword
-    city << c.as_json(only:[:id,:title],include: [image: {methods: :service_url}]).merge(seo_title:seo_title,description:description,keyword:keyword)
+    city << c.as_json(only:[:id,:title,:slug],include: [image: {methods: :service_url}]).merge(seo_title:seo_title,description:description,keyword:keyword)
   end
    render :json => {code:200,message:"city list",cities:city}
     # render json: @cities, include: [image: {methods: :service_url}]
