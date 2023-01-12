@@ -36,6 +36,7 @@ gem "autoprefixer-rails"
 gem 'sprockets-rails', '3.4.1'
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap-sass', '3.3.6'
+gem 'will_paginate-bootstrap'
 gem 'friendly_id', '~> 5.1.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

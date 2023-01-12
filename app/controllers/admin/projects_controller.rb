@@ -146,6 +146,50 @@ class Admin::ProjectsController < ApplicationController
     redirect_to admin_projects_flatstype_path(project_id:@project.id)
   end 
 
+  def locationaminitiestypes
+    @project= Project.find_by_id(params[:project_id])
+     p @project
+     @locationaminities = @project.locationaminities
+     render :layout => "admin/application"
+  end
+
+  def locationamenitiesnew
+    @project= Project.find_by_id(params[:project_id])
+
+    @locationaminitiesnew = Locationaminity.new
+    render :layout => "admin/application"
+  end
+
+  def locationaminitiescreate
+
+  @project= Project.find_by_id(params[:project_id])
+    @locationaminitiescreate= Locationaminity.create!(title:params[:title],dec1:params[:dec1],dec2:params[:dec2],dec3:params[:dec3],dec4:params[:dec4],project_id:params[:project_id])
+    redirect_to admin_projects_locationaminitiestypes_path(project_id:@project.id)
+  end
+
+  def locationaminitiesupdate
+    @project= Project.find_by_id(params[:project_id])
+    @locationaminities= Locationaminity.find_by_id(params[:locationaminities_id])
+    @locationaminities.update!(title:params[:title],dec1:params[:dec1],dec2:params[:dec2],dec3:params[:dec3],dec4:params[:dec4],project_id:params[:project_id])
+      redirect_to admin_projects_locationaminitiestypes_path(project_id:@project.id)
+  end
+
+  def locationaminitiesedit
+    @project= Project.find_by_id(params[:project_id])
+
+   
+    @locationaminities= Locationaminity.find_by_id(params[:locationaminities_id])
+
+    render :layout => "admin/application"
+  end
+
+  def locationaminitiesdelete
+    @project= Project.find_by_id(params[:project_id])
+    @locationaminities = Locationaminity.find_by_id(params[:id])
+    @locationaminities.destroy
+    redirect_to admin_projects_locationaminitiestypes_path(project_id:@project.id)
+  end 
+  
   def upload_multipart_image image,folder_name,prevImg
    
      # begin

@@ -1,0 +1,74 @@
+<style type="text/css">
+          <link rel="stylesheet" type="text/css" href="./style.css" />
+</style>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <div class="col-lg-3"><h2>Edit Location amenities</h2></div>
+    <div class="col-lg-9">
+      <!-- <a href="<%#=admin_new_item_path(params[:id])%>" class="btn btn-danger btn-lg pull-right" style="margin-top: 2%;"><i class="fa fa-plus"></i> Add Menu Item </a> -->
+    </div>  
+  </div> 
+</div>
+<div class="row"> 
+  <div class="col-lg-10"style="padding-left:200px;">
+    <div class="ibox">
+      <div class="col-lg-12">
+        <br>
+        <%=form_for :user,url: admin_project_locationaminitiesupdate_path(project_id:@project_id),:html=>{:project_id=>"new_form",:class=>"form",:multipart =>true} do |la|%>
+          <div class="panel panel-info">
+            <div class="panel-heading">User Details</div>
+            <div class="panel-body">
+             <input type="hidden" name="project_id" value="<%=@project.id%>">
+             <input type="hidden" name="locationaminities_id" value="<%=@locationaminities.id%>">
+                                    
+             
+             <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Location Amenities Title</label>
+                <div class="col-sm-7">
+                   <input type="text" name = "title" placeholder="Location Amenities Title" class="form-control" value = "<%=@locationaminities.title%>"autocomplete = "off">
+                </div>
+             </div>
+          
+          <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Location Amenities dec1</label>
+                <div class="col-sm-7">
+                   <input type="text" name = "dec1" placeholder="Location Amenities Dec1" class="form-control" value = "<%=@locationaminities.dec1%>"autocomplete = "off">
+                </div>
+             </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Location Amenities dec2</label>
+                <div class="col-sm-7">
+                   <input type="text" name = "dec2" placeholder="Location Amenities Dec2" class="form-control" value = "<%=@locationaminities.dec2%>"autocomplete = "off">
+                </div>
+             </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Location Amenities dec3</label>
+                <div class="col-sm-7">
+                   <input type="text" name = "dec3" placeholder="Location Amenities Dec3" class="form-control" value = "<%=@locationaminities.dec3%>"autocomplete = "off">
+                </div>
+             </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Location Amenities dec4</label>
+                <div class="col-sm-7">
+                   <input type="text" name = "dec4" placeholder="Location Amenities Dec4" class="form-control" value = "<%=@locationaminities.dec4%>"autocomplete = "off">
+                </div>
+             </div>
+        
+          
+          
+            
+              <div class="form-group">
+                <button class="btn btn-md btn-primary float-right m-t-n-xs pull-right" type="submit" style= "margin-top: -23px;"id="submit"><strong>Submit</strong></button>     
+              </div>           
+            </div>
+          </div>
+        <%end%> 
+      </div>
+    </div>
+  </div>
+</div>    
+
+
+
+
+

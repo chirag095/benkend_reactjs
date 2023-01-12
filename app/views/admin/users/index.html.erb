@@ -1,63 +1,168 @@
 
-<div class="wrapper wrapper-content animated fadeInRight">
-<div class="row">
-    <div class="col-lg-12">
-        <div class="ibox ">
-            <div class="ibox-title">
-                <h5>User List</h5>
-                
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-wrench"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#" class="dropdown-item">Config option 1</a>
-                        </li>
-                        <li><a href="#" class="dropdown-item">Config option 2</a>
-                        </li>
-                    </ul>
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
-            </div>
-          <div class="ibox-content">
 
+
+         
+                <!-- <a href="<%#=admin_users_delete_path%>"><button class="btn btn-danger btn-md ">delete</button></a> -->
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
 
                     <thead>
                     <tr>
                        <th>Id</th>
+
                         <th>Name</th>
                         <th>Email</th>
                         <th>Contact</th>
                         
                         <th>Project Title</th>
+                         <th>Time Date</th>
                         
                       
                     </tr>
                     </thead>
+                     <%=form_for :user,url: admin_users_delete_path,:html=>{:id=>"new_form",:class=>"form",:multipart =>true} do |s|%>
                     <% @users.each do |u|%>
                     <tbody>
+
                     <tr>
-                        <td><%=u.id%></td>
+                        
+                        <td><input type="checkbox"id="vehicle1" name="user[]" value="<%=u.id%>"><%=u.id%></td>
+
                         <td><%=u.name%></td>
-                         <td><%=u.email%></td>
-                          <td><%=u.contact%></td>
-                          <td><%=u.project.title%></td>
-                      
+                        <td><%=u.email%></td>
+                        <td><%=u.contact%></td>
+                        <td><%=u.project.title%></td>
+                        <td><%=u.created_at.strftime(" %d/%m/%Y %I:%M:%S %p %A") %></td>
                     </tr>
-                  
-                    </tbody>
+                   </tbody>
                     <%end%>
+                     <div class="ibox-content">
+            <div class="btn-group float-right">
+
+
+
+
+                        <button class="btn btn-white btn-sm"><i class="fa fa-arrow-left"></i></button>
+                        <button class="btn btn-white btn-sm"><i class="fa fa-arrow-right"></i></button>
+
+                    </div>
+                    <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Refresh inbox"><i class="fa fa-refresh"></i> Refresh</button>
+                    
+                    <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mark as read"><i class="fa fa-eye"></i> </button>
+                    
+
+                    <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mark as important"><i class="fa fa-exclamation"></i> </button>
+
+                    
+                    
+                    <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to trash" ><i class="fa fa-trash-o"></i> </button>
+                    
+                    <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" type="button" onclick='selects()' value="Select All"></i> Select All</button>
+                      <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" type="button" onclick='deSelect()' value="Deselect All"></i>Deselect All</button>
+
+                   
+
+
+                </div>
+                    
+                    
+
+                    <%end%>
+
+                   
+
                 </table>
+                   <div class="col-lg-12" style="text-align:center">
+            <%= will_paginate @users,renderer: BootstrapPagination::Rails%>
+                </div>
                  </div>
             </div>
         </div>
     </div>
 </div>
-</div>    
+</div> 
+
+<script type="text/javascript">  
+            function selects(){  
+                var ele=document.getElementsByName('user[]');  
+                for(var i=0; i<ele.length; i++){  
+                    if(ele[i].type=='checkbox')  
+                        ele[i].checked=true;  
+                }  
+            }  
+            function deSelect(){  
+                var ele=document.getElementsByName('user[]');  
+                for(var i=0; i<ele.length; i++){  
+                    if(ele[i].type=='checkbox')  
+                        ele[i].checked=false;  
+                      
+                }  
+            }             
+        </script> 
+
+        <style>
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>   
+
+<script type="text/javascript">
+
+
+$(function() {
+
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+    });
+
+});
+
+</script>
+
+<script type="text/javascript">
+  // $(".remove").on("click",function(){
+  //   id = $(this).attr("name")
+  //   console.log(id)
+  //   swal({
+  //       title: "Are you sure?",
+  //       text: "You will not be able to recover this Amenity",
+  //       type: "warning",
+  //       showCancelButton: true,
+  //       confirmButtonClass: "btn-danger",
+  //       confirmButtonText: "Yes, delete it!",
+  //       cancelButtonText: "No, cancel plz!",
+  //       closeOnConfirm: false,
+  //       closeOnCancel: false
+  //   },
+  //   function(remove) {
+  //       if (remove) {
+  //         window.location = "/admin/users/delete/"
+  //         swal("Deleted!", "Your Category has been deleted.", "success");
+  //       } else {
+  //         swal("Cancelled", "Your Category is safe", "error");
+  //       }
+  //   });
+  // })
+</script>

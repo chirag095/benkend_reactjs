@@ -61,8 +61,14 @@ Rails.application.routes.draw do
   get "/projects/flatsedit/:project_id/:flat_id"=>"projects#flatsedit",as:"project_flatsedit"
   post"/projects/flatsupdate"=>"projects#flatsupdate",as:"project_flatsupdate"
   get "/projects/flatsdelete"=>"projects#flatsdelete",as:"project_flatsdelete"
-
   
+  get"/projects/locationaminitiestypes/:project_id" => "projects#locationaminitiestypes",as:"projects_locationaminitiestypes"
+  get"/projects/locationamenitiesnew/:project_id" => "projects#locationamenitiesnew",as:"projects_locationamenitiesnew"
+  post "/projects/locationaminitiescreate" =>"projects#locationaminitiescreate",as:"project_locationaminitiescreate"
+
+  get "/projects/locationaminitiesedit/:project_id/:locationaminities_id"=>"projects#locationaminitiesedit",as:"project_locationaminitiesedit"
+  post"/projects/locationaminitiesupdate"=>"projects#locationaminitiesupdate",as:"project_locationaminitiesupdate"
+  get "/projects/locationaminitiesdelete"=>"projects#locationaminitiesdelete",as:"project_locationaminitiesdelete"
 
   get "/gallerys/index/:project_id"=> "gallerys#index",as:"gallerys_index"
   get"/gallerys/new/:project_id" => "gallerys#new",as:"gallerys_new"
@@ -97,6 +103,8 @@ Rails.application.routes.draw do
      post"/logos/update"=> "logos#update",as:"logos_update"
      get"/logos/edit/:id"=> "logos#edit",as:"logos_edit"
      get"/logos/delete/:id"=> "logos#delete",as:"logos_delete"
+
+     post "/users/delete"=> "users#delete",as:"users_delete"
 
    # resources :projects 
   get "/landing" => "landing#index"

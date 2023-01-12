@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_29_175239) do
+ActiveRecord::Schema.define(version: 2022_12_19_164550) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -144,6 +144,18 @@ ActiveRecord::Schema.define(version: 2022_11_29_175239) do
     t.index ["slug"], name: "index_localities_on_slug", unique: true
   end
 
+  create_table "locationaminities", force: :cascade do |t|
+    t.string "title"
+    t.string "dec1"
+    t.string "dec2"
+    t.string "dec3"
+    t.string "dec4"
+    t.integer "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_locationaminities_on_project_id"
+  end
+
   create_table "logos", force: :cascade do |t|
     t.string "Contact"
     t.datetime "created_at", precision: 6, null: false
@@ -241,6 +253,7 @@ ActiveRecord::Schema.define(version: 2022_11_29_175239) do
   add_foreign_key "galleries", "projects"
   add_foreign_key "localities", "city_ls"
   add_foreign_key "localities", "seos"
+  add_foreign_key "locationaminities", "projects"
   add_foreign_key "projects", "amenities"
   add_foreign_key "projects", "builders"
   add_foreign_key "projects", "city_ls"
