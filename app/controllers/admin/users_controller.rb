@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
    before_action :loggedin_admin
 	def index
 
-		@users = Customer.all.paginate(:page => params[:page],:per_page =>10)
+		@users = Customer.order("created_at DESC").paginate(:page => params[:page],:per_page =>10)
 		  
 		 render :layout => "admin/application"
 	end

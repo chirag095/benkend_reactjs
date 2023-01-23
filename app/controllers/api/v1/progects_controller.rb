@@ -137,7 +137,8 @@ class Api::V1::ProgectsController < Api::V1::ApplicationsController
             @projects =Project.where("locality_id =? and status=?",@locality.id,true)
             @projects.each do |pro| 
                  locality_title = pro.locality.title
-                data << pro.as_json(only:[:id,:title,:project_overview,:start_price,:image,:assets_type,:project_features,:project_status,:project_type,:new_title,:slug]).merge(locality_title:locality_title) 
+                 builder_title = pro.builder.title
+                data << pro.as_json(only:[:id,:title,:project_overview,:start_price,:image,:assets_type,:project_features,:project_status,:project_type,:new_title,:slug]).merge(locality_title:locality_title,builder_title:builder_title) 
             end 
             seoTitle = @locality&.seo&.title
             seo_keyword = @locality&.seo&.keyword
